@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Health Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Personal Health Tracker</h1>
+        <nav>
+            <ul>
+                <li><a href="#log-data">Log Data</a></li>
+                <li><a href="#visualization">Visualizations</a></li>
+                <li><a href="#goals">Goals</a></li>
+                <li><a href="#profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- Log Data Section -->
+        <section id="log-data">
+            <h2>Log Health Data</h2>
+            <form id="healthDataForm">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="waterIntake">Water Intake (liters):</label>
+                <input type="number" id="waterIntake" name="waterIntake" required>
+                
+                <label for="sleepDuration">Sleep Duration (hours):</label>
+                <input type="number" id="sleepDuration" name="sleepDuration" required>
+                
+                <label for="exercise">Exercise (minutes):</label>
+                <input type="number" id="exercise" name="exercise" required>
+                
+                <button type="submit">Log Data</button>
+            </form>
+        </section>
+        
+        <!-- Visualization Section -->
+        <section id="visualization">
+            <h2>Health Data Visualization</h2>
+            <canvas id="healthChart" ></canvas>
+        </section>
+        
+        <!-- Goals Section -->
+        <section id="goals">
+            <h2>Set Health Goals</h2>
+            <form id="goalsForm">
+                <label for="waterGoal">Water Intake Goal (liters):</label>
+                <input type="number" id="waterGoal" name="waterGoal" required>
+                
+                <label for="exerciseGoal">Exercise Goal (minutes):</label>
+                <input type="number" id="exerciseGoal" name="exerciseGoal" required>
+                
+                <button type="submit">Set Goals</button>
+            </form>
+        </section>
+        
+        <!-- User Profile Section -->
+        <section id="profile">
+            <h2>User Profile</h2>
+            <p>Manage your profile and health preferences here.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Personal Health Tracker</p>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js';
+        import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js';
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyCkRZ2Gb0thtczxhLwX53zZsR2OWdhaSMc",
+          authDomain: "healthy-tracker-352a5.firebaseapp.com",
+          projectId: "healthy-tracker-352a5",
+          storageBucket: "healthy-tracker-352a5.appspot.com",
+          messagingSenderId: "850955453270",
+          appId: "1:850955453270:web:a39009e4bfd0042db40cf7",
+          measurementId: "G-WZJFG0MBNL"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        firebase.database().ref('users/').set({
+            username: "John Doe",
+            email: "john.doe@example.com"
+        }).then(() => {
+            console.log('Data saved to Firebase!');
+        }).catch((error) => {
+            console.error('Error saving data:', error);
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>
